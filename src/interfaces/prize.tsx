@@ -1,7 +1,7 @@
 import languages from "./languages";
 import laureate from "./laureate";
 interface prize {
-  awardYear: number;
+  awardYear: string;
   category: languages;
   categoryFullName: languages;
   dateAwarded: string;

@@ -8,15 +8,20 @@ import {
   Button,
 } from "@mui/material";
 import { useEffect, useState } from "react";
+import api_data from "../interfaces/api_data";
+import prize from "../interfaces/prize";
+import Laureate from "../components/Laureate";
 const URL: string = "https://api.nobelprize.org/2.1/nobelPrizes";
 
-interface api_data {
-  nobelPrizes?: [nobel_info];
-}
-interface nobel_info {
-  awardYear: string;
-  category: Object;
-}
+const DEFAULT_PRIZE: prize = {
+  awardYear: "null",
+  category: {},
+  categoryFullName: {},
+  dateAwarded: "",
+  prizeAmount: 0,
+  prizeAmountAdjusted: 0,
+  laureates: [],
+};
 
 function Main() {
   function onlyUnique(value: string, index: number, array?: string[]) {
@@ -34,14 +39,14 @@ function Main() {
     fetch(URL)
       .then((res) => res.json())
       .catch((err) => console.log(err))
-      .then((res_data) => setData(res_data))
-      .then((_) =>
+      .then((res_data) => {
+        setData(res_data);
         setYears(
           data.nobelPrizes
-            ?.map((obj: nobel_info) => obj.awardYear)
+            ?.map((obj: prize) => obj.awardYear)
             .filter(onlyUnique)
-        )
-      )
+        );
+      })
       .finally(() => setSelectDisabled(false));
   });
   const yearComponents = years?.map((year) => {
@@ -79,6 +84,25 @@ function Main() {
         </Select>
       </FormControl>
       <Button>OK</Button>
+      <Laureate
+        awardYear={data.nobelPrizes?.[0]?.awardYear ?? DEFAULT_PRIZE.awardYear}
+        category={data.nobelPrizes?.[0]?.category ?? DEFAULT_PRIZE.category}
+        categoryFullName={
+          data.nobelPrizes?.[0]?.categoryFullName ??
+          DEFAULT_PRIZE.categoryFullName
+        }
+        dateAwarded={
+          data.nobelPrizes?.[0]?.dateAwarded ?? DEFAULT_PRIZE.dateAwarded
+        }
+        prizeAmount={
+          data.nobelPrizes?.[0]?.prizeAmount ?? DEFAULT_PRIZE.prizeAmount
+        }
+        prizeAmountAdjusted={
+          data.nobelPrizes?.[0]?.prizeAmountAdjusted ??
+          DEFAULT_PRIZE.prizeAmountAdjusted
+        }
+        laureates={data.nobelPrizes?.[0]?.laureates ?? DEFAULT_PRIZE.laureates}
+      ></Laureate>
     </Box>
   );
 }
