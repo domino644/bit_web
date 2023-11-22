@@ -1,6 +1,6 @@
-interface languages {
+interface Languages {
   en?: string;
   no?: string;
   se?: string;
 }
-export default languages;
+export default Languages;

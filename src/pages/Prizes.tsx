@@ -1,29 +1,53 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Params, useParams } from "react-router-dom";
-import prize from "../interfaces/prize";
 import NavBar from "../components/NavBar";
-const URL: string = "https://api.nobelprize.org/2.1/nobelPrizes";
-const DEFAULT_PRIZE: prize = {
-  awardYear: "null",
-  category: {},
-  categoryFullName: {},
-  dateAwarded: "",
-  prizeAmount: 0,
-  prizeAmountAdjusted: 0,
-  laureates: [],
-};
+import Prize from "../interfaces/Prize";
+import ApiData from "../interfaces/ApiData";
+import { useDataContext } from "../hooks/useDataContext";
+import LaureateBox from "../components/LaureateBox";
 
 export default function Prizes() {
-  const params: Readonly<Params<string>> = useParams();
+  const { lang, year }: Readonly<Params<string>> = useParams();
+  const [prizes, setPrizes] = useState<Prize[]>();
+  const [ifCorrectYear, setIfCorrectYear] = useState<boolean>(true);
+  const data: ApiData = useDataContext();
   useEffect(() => {
-    // fetch(URL)
-    // .then(res => res.json())
-    // .then
+    if (!isNaN(parseInt(year ? year : "aaa")))
+      setPrizes(data.nobelPrizes?.filter((el) => el.awardYear === year));
+    else setIfCorrectYear(false);
   }, []);
+  if (!ifCorrectYear)
+    return <div style={{ color: "red" }}>Incorrect year format provided</div>;
+  const laureatesComponents = prizes?.map((el) =>
+    el.laureates.map((lau) => {
+      return (
+        <LaureateBox
+          key={lau.id}
+          knownName={lau.knownName}
+          fullName={lau.fullName}
+          orgName={lau.orgName}
+          nativeName={lau.nativeName}
+          portion={lau.portion}
+          motivation={lau.motivation}
+          prizeAmount={el.prizeAmount}
+          prizeAmountAdjusted={el.prizeAmountAdjusted}
+          awardYear={el.awardYear}
+          dateAwarded={el.dateAwarded}
+          category={el.category}
+          categoryFullName={el.categoryFullName}
+          lang={lang ? lang : "en"}
+        />
+      );
+    })
+  );
   return (
     <>
       <NavBar />
-      <div>Prizes</div>
+      {laureatesComponents?.length == 0 ? (
+        <div>No data for Nobel Prize winners in {year}</div>
+      ) : (
+        <div>{laureatesComponents}</div>
+      )}
     </>
   );
 }

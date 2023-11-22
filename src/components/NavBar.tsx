@@ -3,8 +3,15 @@ import englandFlag from "../static/png/england.png";
 import swedenFlag from "../static/png/sweden.png";
 import norwayFlag from "../static/png/norway.png";
 import "../css/NavBar.css";
+import { Params, useNavigate, useParams } from "react-router-dom";
+import { AvailableLanguages } from "../types/AvailableLanguages";
 
 export default function NavBar() {
+  const navigate = useNavigate();
+  const { _, year }: Readonly<Params<string>> = useParams();
+  const handleClick = (l: AvailableLanguages) => {
+    navigate(`/prizes/${l}/${year}`);
+  };
   return (
     <Box
       sx={{
@@ -24,6 +31,7 @@ export default function NavBar() {
           }}
           src={englandFlag}
           alt="flag of england"
+          onClick={() => handleClick("en")}
         />
       </button>
       <button>
@@ -35,6 +43,7 @@ export default function NavBar() {
           }}
           src={swedenFlag}
           alt="flag of sweden"
+          onClick={() => handleClick("se")}
         />
       </button>
       <button>
@@ -46,6 +55,7 @@ export default function NavBar() {
           }}
           src={norwayFlag}
           alt="flag of norway"
+          onClick={() => handleClick("no")}
         />
       </button>
     </Box>

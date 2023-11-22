@@ -1,13 +1,13 @@
-import languages from "./languages";
-import laureate from "./laureate";
-interface prize {
+import Languages from "./Languages";
+import Laureate from "./Laureate";
+interface Prize {
   awardYear: string;
-  category: languages;
-  categoryFullName: languages;
+  category: Languages;
+  categoryFullName: Languages;
   dateAwarded: string;
   prizeAmount: number;
   prizeAmountAdjusted: number;
-  laureates: laureate[];
+  laureates: Laureate[];
 }
 
-export default prize;
+export default Prize;

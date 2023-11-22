@@ -1,12 +1,14 @@
-import languages from "./languages";
+import Languages from "./Languages";
 
-interface laureate {
+interface Laureate {
   id: number;
-  knownName: languages;
-  fullName: languages;
+  knownName?: Languages;
+  fullName?: Languages;
+  orgName?: Languages;
+  nativeName?: string; 
   portion: string;
   sortOrder: string;
-  motivation: languages;
+  motivation: Languages;
 }
 
-export default laureate;
+export default Laureate;

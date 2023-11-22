@@ -8,22 +8,20 @@ import {
   Button,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import api_data from "../interfaces/api_data";
-import prize from "../interfaces/prize";
+import ApiData from "../interfaces/ApiData";
 import { useNavigate } from "react-router-dom";
-import NavBar from "../components/NavBar";
-const URL: string = "https://api.nobelprize.org/2.1/nobelPrizes";
+import { useDataContext } from "../hooks/useDataContext";
 
 function Main() {
   function onlyUnique(value: string, index: number, array?: string[]) {
     return array?.indexOf(value) === index;
   }
   const navigate = useNavigate();
-  const [data, setData] = useState<api_data>({});
   const [chosenYear, setChosenYear] = useState<string>("");
   const [years, setYears] = useState<string[] | undefined>([""]);
   const [selectDisabled, setSelectDisabled] = useState<boolean>(true);
   const [buttonDisabled, setButtonDisabled] = useState<boolean>(true);
+  const data: ApiData = useDataContext();
 
   const handleChange = (event: SelectChangeEvent) => {
     setChosenYear(event.target.value);
@@ -31,24 +29,12 @@ function Main() {
   };
 
   const handleClick = () => {
-    navigate(`/prizes/:${chosenYear}`);
+    navigate(`/prizes/en/${chosenYear}`);
   };
 
   useEffect(() => {
-    fetch(URL)
-      .then((res) => res.json())
-      .catch((err) => console.log(err))
-      .then((res_data) => {
-        setData(res_data);
-        setYears(
-          data.nobelPrizes
-            ?.map((obj: prize) => obj.awardYear)
-            .filter(onlyUnique)
-        );
-      })
-      .finally(() => {
-        setSelectDisabled(false);
-      });
+    setYears(data.nobelPrizes?.map((el) => el.awardYear).filter(onlyUnique));
+    setSelectDisabled(false);
   });
   const yearComponents = years?.map((year) => {
     return (
