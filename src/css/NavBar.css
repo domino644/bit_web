@@ -5,6 +5,7 @@ button {
   place-items: center;
 }
 button:hover {
+  cursor: pointer;
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-name: bounce;

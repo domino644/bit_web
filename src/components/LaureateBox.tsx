@@ -1,6 +1,7 @@
 import { formatPrize } from "../util/PrizeFormat";
 import { reverseDate } from "../util/DateReverse";
 import Languages from "../interfaces/Languages";
+import { LaureateBoxContent } from "./LaureateBoxContent";
 interface LaureateBoxProps {
   knownName?: Languages;
   fullName?: Languages;
@@ -20,39 +21,38 @@ const LaureateBox = (props: LaureateBoxProps) => {
   switch (props.lang) {
     case "en":
       return (
-        <>
-          <div>
-            {props.fullName?.en
+        <LaureateBoxContent
+          fullName={
+            props.fullName?.en
               ? props.fullName.en
               : props.orgName?.en
               ? props.orgName?.en
               : props.nativeName
               ? props.nativeName
-              : "name undefined"}
-          </div>
-          <ul>
-            <li>{props.awardYear}</li>
-            <li>
-              {props.categoryFullName.en
-                ? props.categoryFullName.en
-                : "category undefined"}
-            </li>
-            <li>
-              {props.dateAwarded
-                ? reverseDate(props.dateAwarded)
-                : "Exact date unknown"}
-            </li>
-            <li>
-              {formatPrize(props.prizeAmountAdjusted * eval(props.portion))}
-            </li>
-          </ul>
-        </>
+              : "name unknown"
+          }
+          awardYear={props.awardYear}
+          categoryFullName={
+            props.categoryFullName.en
+              ? props.categoryFullName.en
+              : "category unknown"
+          }
+          dateAwarded={
+            props.dateAwarded
+              ? reverseDate(props.dateAwarded)
+              : "Exact date unknown"
+          }
+          prize={formatPrize(props.prizeAmountAdjusted * eval(props.portion))}
+          motivation={
+            props.motivation.en ? props.motivation.en : "motivation unknown"
+          }
+        />
       );
     case "se":
       return (
-        <>
-          <div>
-            {props.fullName?.se
+        <LaureateBoxContent
+          fullName={
+            props.fullName?.se
               ? props.fullName.se
               : props.orgName?.se
               ? props.orgName?.se
@@ -60,33 +60,36 @@ const LaureateBox = (props: LaureateBoxProps) => {
               ? props.nativeName
               : props.fullName?.en
               ? props.fullName.en
-              : "name undefined"}
-          </div>
-          <ul>
-            <li>{props.awardYear}</li>
-            <li>
-              {props.categoryFullName.se
-                ? props.categoryFullName.se
-                : props.categoryFullName.en
-                ? props.categoryFullName.en
-                : "category undefined"}
-            </li>
-            <li>
-              {props.dateAwarded
-                ? reverseDate(props.dateAwarded)
-                : "Exact date unknown"}
-            </li>
-            <li>
-              {formatPrize(props.prizeAmountAdjusted * eval(props.portion))}
-            </li>
-          </ul>
-        </>
+              : "name unknown"
+          }
+          awardYear={props.awardYear}
+          categoryFullName={
+            props.categoryFullName.se
+              ? props.categoryFullName.se
+              : props.categoryFullName.en
+              ? props.categoryFullName.en
+              : "category unknown"
+          }
+          dateAwarded={
+            props.dateAwarded
+              ? reverseDate(props.dateAwarded)
+              : "Exact date unknown"
+          }
+          prize={formatPrize(props.prizeAmountAdjusted * eval(props.portion))}
+          motivation={
+            props.motivation.se
+              ? props.motivation.se
+              : props.motivation.en
+              ? props.motivation.en
+              : "motivation unknown"
+          }
+        />
       );
     case "no":
       return (
-        <>
-          <div>
-            {props.fullName?.no
+        <LaureateBoxContent
+          fullName={
+            props.fullName?.no
               ? props.fullName.no
               : props.orgName?.no
               ? props.orgName?.no
@@ -94,27 +97,30 @@ const LaureateBox = (props: LaureateBoxProps) => {
               ? props.nativeName
               : props.fullName?.en
               ? props.fullName.en
-              : "name undefined"}
-          </div>
-          <ul>
-            <li>{props.awardYear}</li>
-            <li>
-              {props.categoryFullName.no
-                ? props.categoryFullName.no
-                : props.categoryFullName.en
-                ? props.categoryFullName.en
-                : "category undefined"}
-            </li>
-            <li>
-              {props.dateAwarded
-                ? reverseDate(props.dateAwarded)
-                : "Exact date unknown"}
-            </li>
-            <li>
-              {formatPrize(props.prizeAmountAdjusted * eval(props.portion))}
-            </li>
-          </ul>
-        </>
+              : "name unknown"
+          }
+          awardYear={props.awardYear}
+          categoryFullName={
+            props.categoryFullName.no
+              ? props.categoryFullName.no
+              : props.categoryFullName.en
+              ? props.categoryFullName.en
+              : "category unknown"
+          }
+          dateAwarded={
+            props.dateAwarded
+              ? reverseDate(props.dateAwarded)
+              : "Exact date unknown"
+          }
+          prize={formatPrize(props.prizeAmountAdjusted * eval(props.portion))}
+          motivation={
+            props.motivation.no
+              ? props.motivation.no
+              : props.motivation.en
+              ? props.motivation.en
+              : "motivation unknown"
+          }
+        />
       );
     default:
       return <></>;

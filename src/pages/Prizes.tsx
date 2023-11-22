@@ -46,7 +46,16 @@ export default function Prizes() {
       {laureatesComponents?.length == 0 ? (
         <div>No data for Nobel Prize winners in {year}</div>
       ) : (
-        <div>{laureatesComponents}</div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexDirection: "column",
+            gap: "5px",
+          }}
+        >
+          {laureatesComponents}
+        </div>
       )}
     </>
   );

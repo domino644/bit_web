@@ -6,6 +6,7 @@ import React, {
   useState,
 } from "react";
 import ApiData from "../interfaces/ApiData";
+import { CircularProgress } from "@mui/material";
 interface Props {
   children: ReactNode;
 }
@@ -25,7 +26,16 @@ export const DataContextProvider: React.FC<Props> = (props) => {
   return (
     <>
       {isLoading ? (
-        <div>Page is loading...</div>
+        <div
+          style={{
+            width: "100%",
+            height: "100vh",
+            display: "grid",
+            placeItems: "center",
+          }}
+        >
+          <CircularProgress />
+        </div>
       ) : (
         <DataContext.Provider value={data}>
           {props.children}

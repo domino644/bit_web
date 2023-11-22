@@ -12,7 +12,7 @@ import ApiData from "../interfaces/ApiData";
 import { useNavigate } from "react-router-dom";
 import { useDataContext } from "../hooks/useDataContext";
 
-function Main() {
+const Main = () => {
   function onlyUnique(value: string, index: number, array?: string[]) {
     return array?.indexOf(value) === index;
   }
@@ -53,13 +53,7 @@ function Main() {
         height: "100vh",
       }}
     >
-      <FormControl
-        required
-        disabled={selectDisabled}
-        sx={{
-          width: "20%",
-        }}
-      >
+      <FormControl required disabled={selectDisabled} sx={{ width: "20%" }}>
         <InputLabel id="year-select-label">Year</InputLabel>
         <Select
           labelId="year-select-label"
@@ -72,10 +66,10 @@ function Main() {
         </Select>
       </FormControl>
       <Button disabled={buttonDisabled} onClick={handleClick}>
-        Wyszukaj nagrody!
+        Search for prizes!
       </Button>
     </Box>
   );
-}
+};
 
 export default Main;
