@@ -1,4 +1,5 @@
 import { Box, Paper } from "@mui/material";
+import { filterEntities, filterHTML } from "../util/HTMLStringFilter";
 
 interface Props {
   fullName: string;
@@ -11,12 +12,14 @@ interface Props {
 
 export const LaureateBoxContent = (props: Props) => {
   return (
-    <Paper elevation={3} sx={{ padding: "5px", width: "96%" }}>
+    <Paper elevation={7} sx={{ padding: "5px", width: "96%" }}>
       <Box>
         <h3>{props.fullName}</h3>
       </Box>
       <Box>
-        <i>"{props.motivation}"</i>
+        <h5>
+          <i>"{filterHTML(filterEntities(props.motivation))}"</i>
+        </h5>
       </Box>
       <Box>{props.categoryFullName}</Box>
       <Box>Year award: {props.awardYear}</Box>
