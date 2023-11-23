@@ -16,12 +16,14 @@ interface LaureateBoxProps {
   category: Languages;
   categoryFullName: Languages;
   lang: string;
+  timeout: number;
 }
 const LaureateBox = (props: LaureateBoxProps) => {
   switch (props.lang) {
     case "en":
       return (
         <LaureateBoxContent
+          timeout={props.timeout}
           fullName={
             props.fullName?.en
               ? props.fullName.en
@@ -52,6 +54,7 @@ const LaureateBox = (props: LaureateBoxProps) => {
     case "se":
       return (
         <LaureateBoxContent
+          timeout={props.timeout}
           fullName={
             props.fullName?.se
               ? props.fullName.se
@@ -90,6 +93,7 @@ const LaureateBox = (props: LaureateBoxProps) => {
     case "no":
       return (
         <LaureateBoxContent
+          timeout={props.timeout}
           fullName={
             props.fullName?.no
               ? props.fullName.no

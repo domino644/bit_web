@@ -5,6 +5,7 @@ import Prize from "../interfaces/Prize";
 import ApiData from "../interfaces/ApiData";
 import { useDataContext } from "../hooks/useDataContext";
 import LaureateBox from "../components/LaureateBox";
+import { Grow } from "@mui/material";
 
 export default function Prizes() {
   const { lang, year }: Readonly<Params<string>> = useParams();
@@ -22,7 +23,7 @@ export default function Prizes() {
   if (!ifCorrectYear)
     return <div style={{ color: "red" }}>Incorrect year format provided</div>;
 
-  const laureatesComponents = prizes?.map((el) =>
+  const laureatesComponents = prizes?.map((el, i) =>
     el.laureates.map((lau) => {
       return (
         <LaureateBox
@@ -40,6 +41,7 @@ export default function Prizes() {
           category={el.category}
           categoryFullName={el.categoryFullName}
           lang={lang ? lang : "en"}
+          timeout={(6000 / prizes.length + 1) * (i + 1)}
         />
       );
     })
