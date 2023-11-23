@@ -5,9 +5,8 @@ import Prize from "../interfaces/Prize";
 import ApiData from "../interfaces/ApiData";
 import { useDataContext } from "../hooks/useDataContext";
 import LaureateBox from "../components/LaureateBox";
-import { Grow } from "@mui/material";
 
-export default function Prizes() {
+export const Prizes = () => {
   const { lang, year }: Readonly<Params<string>> = useParams();
   const [prizes, setPrizes] = useState<Prize[]>();
   const [ifCorrectYear, setIfCorrectYear] = useState<boolean>(true);
@@ -51,7 +50,9 @@ export default function Prizes() {
     <>
       <NavBar />
       {laureatesComponents?.length == 0 ? (
-        <div>No data for Nobel Prize winners in {year}</div>
+        <h1 style={{ color: "white", width: "100%", textAlign: "center" }}>
+          No data for Nobel Prize winners in {year}
+        </h1>
       ) : (
         <div
           style={{
@@ -66,4 +67,4 @@ export default function Prizes() {
       )}
     </>
   );
-}
+};
