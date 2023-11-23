@@ -42,7 +42,8 @@ const LaureateBox = (props: LaureateBoxProps) => {
               ? reverseDate(props.dateAwarded)
               : "Exact date unknown"
           }
-          prize={formatPrize(props.prizeAmountAdjusted * eval(props.portion))}
+          prizeSK={formatPrize(props.prizeAmountAdjusted * eval(props.portion))}
+          prizeUSD={formatPrize(props.prizeAmount * eval(props.portion))}
           motivation={
             props.motivation.en ? props.motivation.en : "motivation unknown"
           }
@@ -75,7 +76,8 @@ const LaureateBox = (props: LaureateBoxProps) => {
               ? reverseDate(props.dateAwarded)
               : "Exact date unknown"
           }
-          prize={formatPrize(props.prizeAmountAdjusted * eval(props.portion))}
+          prizeSK={formatPrize(props.prizeAmountAdjusted * eval(props.portion))}
+          prizeUSD={formatPrize(props.prizeAmount * eval(props.portion))}
           motivation={
             props.motivation.se
               ? props.motivation.se
@@ -112,7 +114,8 @@ const LaureateBox = (props: LaureateBoxProps) => {
               ? reverseDate(props.dateAwarded)
               : "Exact date unknown"
           }
-          prize={formatPrize(props.prizeAmountAdjusted * eval(props.portion))}
+          prizeSK={formatPrize(props.prizeAmountAdjusted * eval(props.portion))}
+          prizeUSD={formatPrize(props.prizeAmount * eval(props.portion))}
           motivation={
             props.motivation.no
               ? props.motivation.no

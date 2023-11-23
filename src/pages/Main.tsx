@@ -53,7 +53,14 @@ const Main = () => {
         height: "100vh",
       }}
     >
-      <FormControl required disabled={selectDisabled} sx={{ width: "20%" }}>
+      <FormControl
+        required
+        disabled={selectDisabled}
+        sx={{
+          width: "20%",
+          minWidth: "100px",
+        }}
+      >
         <InputLabel id="year-select-label">Year</InputLabel>
         <Select
           labelId="year-select-label"
@@ -62,6 +69,9 @@ const Main = () => {
           value={chosenYear}
           onChange={handleChange}
         >
+          <MenuItem key="all" value="all">
+            All years
+          </MenuItem>
           {yearComponents}
         </Select>
       </FormControl>

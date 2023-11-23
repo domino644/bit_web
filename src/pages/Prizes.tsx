@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Params, useParams } from "react-router-dom";
-import NavBar from "../components/NavBar";
+import { NavBar } from "../components/NavBar";
 import Prize from "../interfaces/Prize";
 import ApiData from "../interfaces/ApiData";
 import { useDataContext } from "../hooks/useDataContext";
@@ -11,13 +11,17 @@ export default function Prizes() {
   const [prizes, setPrizes] = useState<Prize[]>();
   const [ifCorrectYear, setIfCorrectYear] = useState<boolean>(true);
   const data: ApiData = useDataContext();
+
   useEffect(() => {
     if (!isNaN(parseInt(year ? year : "aaa")))
       setPrizes(data.nobelPrizes?.filter((el) => el.awardYear === year));
+    else if (year === "all") setPrizes(data.nobelPrizes);
     else setIfCorrectYear(false);
   }, []);
+
   if (!ifCorrectYear)
     return <div style={{ color: "red" }}>Incorrect year format provided</div>;
+
   const laureatesComponents = prizes?.map((el) =>
     el.laureates.map((lau) => {
       return (
@@ -40,6 +44,7 @@ export default function Prizes() {
       );
     })
   );
+
   return (
     <>
       <NavBar />
