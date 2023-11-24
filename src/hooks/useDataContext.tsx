@@ -16,7 +16,7 @@ const DataContext = createContext<ApiData>({});
 export const DataContextProvider: React.FC<Props> = (props) => {
   const [data, setData] = useState<ApiData>({});
   const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [dataLoaded, setDataLoaded] = useState<boolean>(false);
+
   useEffect(() => {
     fetch(URL)
       .then((res) => res.json())
@@ -24,7 +24,6 @@ export const DataContextProvider: React.FC<Props> = (props) => {
       .catch((err) => console.log(err))
       .finally(() => {
         setIsLoading(false);
-        setDataLoaded(true);
         console.log("data loaded");
       });
   }, []);

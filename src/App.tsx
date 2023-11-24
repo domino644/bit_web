@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
 import NotFound from "./pages/NotFound";
-import Prizes from "./pages/Prizes";
+import { Prizes } from "./pages/Prizes";
 import { DataContextProvider } from "./hooks/useDataContext";
 import { ThemeProvider, createTheme } from "@mui/material";
 

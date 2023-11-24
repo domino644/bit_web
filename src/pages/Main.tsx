@@ -35,7 +35,7 @@ const Main = () => {
   useEffect(() => {
     setYears(data.nobelPrizes?.map((el) => el.awardYear).filter(onlyUnique));
     setSelectDisabled(false);
-  });
+  }, [data.nobelPrizes]);
   const yearComponents = years?.map((year) => {
     return (
       <MenuItem key={year} value={year}>
