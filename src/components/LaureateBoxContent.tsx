@@ -8,7 +8,7 @@ import { useState } from "react";
 
 interface Props {
   fullName: string;
-  categoryFullName: string;
+  category: string;
   awardYear: string;
   dateAwarded: string;
   prizeSK: string;
@@ -49,7 +49,7 @@ export const LaureateBoxContent = (props: Props) => {
             <i>"{filterHTML(filterEntities(props.motivation))}"</i>
           </h5>
         </Box>
-        <Box>{props.categoryFullName}</Box>
+        <Box>{props.category}</Box>
         <Box>Year award: {props.awardYear}</Box>
         <Box>Exact date: {props.dateAwarded}</Box>
         <Box>

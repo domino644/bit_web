@@ -20,11 +20,7 @@ const LaureateBox = (props: LaureateBoxProps) => {
               : "name unknown"
           }
           awardYear={props.awardYear}
-          categoryFullName={
-            props.categoryFullName.en
-              ? props.categoryFullName.en
-              : "category unknown"
-          }
+          category={props.category.en ? props.category.en : "category unknown"}
           dateAwarded={
             props.dateAwarded
               ? reverseDate(props.dateAwarded)
@@ -54,11 +50,11 @@ const LaureateBox = (props: LaureateBoxProps) => {
               : "name unknown"
           }
           awardYear={props.awardYear}
-          categoryFullName={
-            props.categoryFullName.se
-              ? props.categoryFullName.se
-              : props.categoryFullName.en
-              ? props.categoryFullName.en
+          category={
+            props.category.se
+              ? props.category.se
+              : props.category.en
+              ? props.category.en
               : "category unknown"
           }
           dateAwarded={
@@ -94,11 +90,11 @@ const LaureateBox = (props: LaureateBoxProps) => {
               : "name unknown"
           }
           awardYear={props.awardYear}
-          categoryFullName={
-            props.categoryFullName.no
-              ? props.categoryFullName.no
-              : props.categoryFullName.en
-              ? props.categoryFullName.en
+          category={
+            props.category.no
+              ? props.category.no
+              : props.category.en
+              ? props.category.en
               : "category unknown"
           }
           dateAwarded={
