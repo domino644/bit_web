@@ -1,24 +1,8 @@
 import { formatPrize } from "../util/PrizeFormat";
 import { reverseDate } from "../util/DateReverse";
-import Languages from "../interfaces/Languages";
 import { LaureateBoxContent } from "./LaureateBoxContent";
-interface LaureateBoxProps {
-  knownName?: Languages;
-  fullName?: Languages;
-  orgName?: Languages;
-  nativeName?: string;
-  portion: string;
-  motivation: Languages;
-  prizeAmount: number;
-  prizeAmountAdjusted: number;
-  awardYear: string;
-  dateAwarded?: string;
-  category: Languages;
-  categoryFullName: Languages;
-  lang: string;
-  timeout: number;
-  playFn: () => void;
-}
+import LaureateBoxProps from "../interfaces/LaureateBoxProps";
+
 const LaureateBox = (props: LaureateBoxProps) => {
   switch (props.lang) {
     case "en":

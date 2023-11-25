@@ -1,51 +1,45 @@
-import { Paper, Select, MenuItem, Box } from "@mui/material";
-import { LocalizationProvider } from "@mui/x-date-pickers";
-import { DateField } from "@mui/x-date-pickers/DateField";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import Slider from "@mui/material/Slider";
-import "dayjs/locale/pl";
+import { Paper, Select, MenuItem, Box, Button } from "@mui/material";
 import { useState } from "react";
+import FilterParams from "../interfaces/FilterParams";
 
-export const FilterBar = () => {
-  const [money, setMoney] = useState<number[]>([10, 30]);
-  const valuetext = (value: number) => `${value}SEK`;
-  const handleSliderChange = (_event: Event, newValue: number | number[]) => {
-    setMoney(newValue as number[]);
-  };
+interface Props {
+  filterFn: (filters: FilterParams) => void;
+}
+
+export const FilterBar = (props: Props) => {
+  const [categoryFilter, setCategoryFilter] = useState<string>("");
   return (
     <Paper
       elevation={2}
-      sx={{ width: "96%", padding: "5px", display: "flex", gap: "15px" }}
+      sx={{ width: "96%", padding: "5px", display: "flex", gap: "20px" }}
     >
       <Box sx={{ minWidth: "12%" }}>
         <Box>Category </Box>
-        <Select defaultValue="none" sx={{ width: "100%" }}>
-          <MenuItem value="none">---</MenuItem>
-          <MenuItem value="physics">Physics</MenuItem>
-          <MenuItem value="peace">Peace</MenuItem>
-          <MenuItem value="chemistry">Chemistry</MenuItem>
-          <MenuItem value="medicine">Medicine or Physiology</MenuItem>
-          <MenuItem value="literature">Literature</MenuItem>
+        <Select
+          defaultValue="all"
+          sx={{ width: "100%" }}
+          onChange={(event) => setCategoryFilter(event.target.value)}
+        >
+          <MenuItem value="all">All</MenuItem>
+          <MenuItem value="Physics">Physics</MenuItem>
+          <MenuItem value="Peace">Peace</MenuItem>
+          <MenuItem value="Chemistry">Chemistry</MenuItem>
+          <MenuItem value="Physiology or Medicine">
+            Physiology or Medicine
+          </MenuItem>
+          <MenuItem value="Literature">Literature</MenuItem>
         </Select>
       </Box>
-      <Box>
-        <Box>Date </Box>
-        <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="pl">
-          <DateField />
-        </LocalizationProvider>
-      </Box>
-      <Box sx={{ width: "300px" }}>
-        <Slider
-          getAriaLabel={() => "Price range"}
-          getAriaValueText={valuetext}
-          value={money}
-          onChange={handleSliderChange}
-          valueLabelDisplay="auto"
-          min={0}
-          max={100}
-          disableSwap
-        />
-      </Box>
+      <Button
+        onClick={() =>
+          props.filterFn({
+            categoryFilter: categoryFilter,
+          })
+        }
+        sx={{ marginLeft: "auto" }}
+      >
+        Filter
+      </Button>
     </Paper>
   );
 };
