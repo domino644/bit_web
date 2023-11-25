@@ -7,7 +7,7 @@ interface Props {
 }
 
 export const FilterBar = (props: Props) => {
-  const [categoryFilter, setCategoryFilter] = useState<string>("");
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
   return (
     <Paper
       elevation={2}
