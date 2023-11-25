@@ -44,41 +44,48 @@ const Main = () => {
     );
   });
   return (
-    <Box
-      sx={{
-        width: "100%",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <FormControl
-        required
-        disabled={selectDisabled}
+    <>
+      <Box sx={{ color: "white" }}>
+        <h1 style={{ textAlign: "center" }}>Welcome!</h1>
+        <h2 style={{ textAlign: "center" }}>
+          Please select a year to see all Nobel Prize laureates from this year
+        </h2>
+      </Box>
+      <Box
         sx={{
-          width: "20%",
-          minWidth: "100px",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <InputLabel id="year-select-label">Year</InputLabel>
-        <Select
-          labelId="year-select-label"
-          id="year-simple-select"
-          label="Year"
-          value={chosenYear}
-          onChange={handleChange}
+        <FormControl
+          required
+          disabled={selectDisabled}
+          sx={{
+            width: "20%",
+            minWidth: "100px",
+          }}
         >
-          <MenuItem key="all" value="all">
-            All years
-          </MenuItem>
-          {yearComponents}
-        </Select>
-      </FormControl>
-      <Button disabled={buttonDisabled} onClick={handleClick}>
-        Search for prizes!
-      </Button>
-    </Box>
+          <InputLabel id="year-select-label">Year</InputLabel>
+          <Select
+            labelId="year-select-label"
+            id="year-simple-select"
+            label="Year"
+            value={chosenYear}
+            onChange={handleChange}
+          >
+            <MenuItem key="all" value="all">
+              All years
+            </MenuItem>
+            {yearComponents}
+          </Select>
+        </FormControl>
+        <Button disabled={buttonDisabled} onClick={handleClick}>
+          Search for prizes!
+        </Button>
+      </Box>
+    </>
   );
 };
 

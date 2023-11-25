@@ -8,6 +8,7 @@ import LaureateBox from "../components/LaureateBox";
 import { Paper } from "@mui/material";
 import { useAudio } from "../hooks/useAudio";
 import polskaGurom from "../static/mp3/polska_gurom.mp3";
+import { FilterBar } from "../components/FilterBar";
 
 export const Prizes = () => {
   const { lang, year }: Readonly<Params<string>> = useParams();
@@ -68,14 +69,15 @@ export const Prizes = () => {
           }}
         >
           {year === "all" ? (
-            <Paper sx={{ width: "96%", textAlign: "center" }}>
+            <Paper sx={{ width: "96%", textAlign: "center", padding: "5px" }}>
               <h3>All Nobel Prize laureates</h3>
             </Paper>
           ) : (
-            <Paper sx={{ width: "96%", textAlign: "center" }}>
+            <Paper sx={{ width: "96%", textAlign: "center", padding: "5px" }}>
               <h3>Nobel Prize laureates in {year}</h3>
             </Paper>
           )}
+          <FilterBar />
           {laureatesComponents}
         </div>
       )}
