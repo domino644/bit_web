@@ -65,7 +65,7 @@ export const Prizes = () => {
       })
     );
     setLaureatesInfo(tab);
-  }, [prizes]);
+  }, [prizes, lang]);
 
   if (!ifCorrectYear)
     return <div style={{ color: "red" }}>Incorrect year format provided</div>;
