@@ -34,68 +34,38 @@ export const Prizes = () => {
   useEffect(() => {
     if (!isNaN(parseInt(year ? year : "aaa"))) {
       setPrizes(data.nobelPrizes?.filter((el) => el.awardYear === year));
-      let tab: LaureateBoxProps[] = [];
-      prizes?.map((el, i) =>
-        el.laureates.map((lau) => {
-          let l: LaureateBoxProps = {
-            id: lau.id,
-            knownName: lau.knownName,
-            fullName: lau.fullName,
-            orgName: lau.orgName,
-            nativeName: lau.nativeName,
-            dateAwarded: el.dateAwarded,
-            portion: lau.portion,
-            motivation: lau.motivation,
-            prizeAmount: el.prizeAmount,
-            prizeAmountAdjusted: el.prizeAmountAdjusted,
-            awardYear: el.awardYear,
-            category: el.category,
-            categoryFullName: el.categoryFullName,
-            lang: lang ? lang : "en",
-            timeout: (6000 / prizes.length + 1) * (i + 1),
-            playFn: toggle,
-          };
-          tab.push(l);
-        })
-      );
-      setLaureatesInfo(tab);
     } else if (year === "all") {
       setPrizes(data.nobelPrizes);
-      let tab: LaureateBoxProps[] = [];
-      prizes?.map((el, i) =>
-        el.laureates.map((lau) => {
-          let l: LaureateBoxProps = {
-            id: lau.id,
-            knownName: lau.knownName,
-            fullName: lau.fullName,
-            orgName: lau.orgName,
-            nativeName: lau.nativeName,
-            dateAwarded: el.dateAwarded,
-            portion: lau.portion,
-            motivation: lau.motivation,
-            prizeAmount: el.prizeAmount,
-            prizeAmountAdjusted: el.prizeAmountAdjusted,
-            awardYear: el.awardYear,
-            category: el.category,
-            categoryFullName: el.categoryFullName,
-            lang: lang ? lang : "en",
-            timeout: (6000 / prizes.length + 1) * (i + 1),
-            playFn: toggle,
-          };
-          tab.push(l);
-        })
-      );
-      setLaureatesInfo(tab);
     } else setIfCorrectYear(false);
-  }, [
-    setIfCorrectYear,
-    laureatesInfo,
-    data.nobelPrizes,
-    lang,
-    prizes,
-    toggle,
-    year,
-  ]);
+  }, [year]);
+
+  useEffect(() => {
+    let tab: LaureateBoxProps[] = [];
+    prizes?.map((el, i) =>
+      el.laureates.map((lau) => {
+        let l: LaureateBoxProps = {
+          id: lau.id,
+          knownName: lau.knownName,
+          fullName: lau.fullName,
+          orgName: lau.orgName,
+          nativeName: lau.nativeName,
+          dateAwarded: el.dateAwarded,
+          portion: lau.portion,
+          motivation: lau.motivation,
+          prizeAmount: el.prizeAmount,
+          prizeAmountAdjusted: el.prizeAmountAdjusted,
+          awardYear: el.awardYear,
+          category: el.category,
+          categoryFullName: el.categoryFullName,
+          lang: lang ? lang : "en",
+          timeout: (6000 / prizes.length + 1) * (i + 1),
+          playFn: toggle,
+        };
+        tab.push(l);
+      })
+    );
+    setLaureatesInfo(tab);
+  }, [prizes]);
 
   if (!ifCorrectYear)
     return <div style={{ color: "red" }}>Incorrect year format provided</div>;
